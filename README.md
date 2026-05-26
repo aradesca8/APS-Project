@@ -7,12 +7,12 @@ Repository per il Project Work di "Algoritmi e Protocolli per la Sicurezza" (A.A
 
 ---
 
-## 📌 Descrizione del Progetto
+## Descrizione del Progetto
 Questo repository contiene il materiale relativo al Project Work per il corso di *Algoritmi e Protocolli per la Sicurezza*. Il progetto si concentra sulla progettazione, analisi e simulazione in Python di un protocollo crittografico sicuro per il voto elettronico (Referendum Binario), bilanciando requisiti di segretezza, integrità e verificabilità.
 
 ---
 
-## 📅 Tabella di Marcia (Roadmap)
+## Tabella di Marcia 
 Per garantire lo sviluppo equo e nei tempi previsti della consegna (19 Giugno), abbiamo strutturato il lavoro secondo la seguente roadmap interna:
 
 | Date | Fase | Obiettivi e Compiti |
