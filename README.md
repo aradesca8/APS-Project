@@ -115,7 +115,7 @@ Per misurare il costo computazionale, la dimensione dei messaggi e la latenza di
 python3 benchmark_full.py
 ```
 
-Stampa a schermo l'avanzamento di ogni misura e salva tutti i numeri in `benchmark_results.json`. Richiede 1-2 minuti; non è basato su `pytest-benchmark` ma su un ciclo di misurazione scritto ad hoc (media, min, max, numero di iterazioni per ciascuna operazione, riportati esplicitamente).
+Stampa a schermo l'avanzamento di ogni misura e salva tutti i numeri in `benchmark_results.json`. Richiede 1-2 minuti; non è basato su un ciclo di misurazione scritto ad hoc (media, min, max, numero di iterazioni per ciascuna operazione, riportati esplicitamente).
 
 ### Fasi misurate
 
