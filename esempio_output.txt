@@ -1,0 +1,106 @@
+======================================================================
+SETUP INFRASTRUTTURA
+======================================================================
+[OK] Root CA d'Ateneo attiva (offline dopo l'emissione dell'intermedia). CA Intermedia creata; certificati X.509v3 di AA e GU emessi da questa e verificati sull'intera catena Root->Intermedia->end-entity.
+[OK] Commissione Elettorale: pkCE/skCE generata, skCE protetta con soglia (3,5).
+[OK] Autorita' di Autenticazione: 40 studenti eleggibili, gettoni Cert validi 300s (NotAfter).
+[OK] Gestore dell'Urna pronto. Bacheca pubblicata ogni 5 schede (e definitivamente alla chiusura). Chiusura richiede 3 conferme CE.
+
+======================================================================
+SESSIONE DI VOTO (elettori onesti)
+======================================================================
+[OK] 40 voti sottomessi con successo. Urna: 40 schede registrate.
+[OK] Auto-consistenza dell'urna (h vs SHA-256(c) corrente): True
+[OK] Ultima bacheca pubblicata: n=40, root=ab72b8736be5d8b2...
+
+======================================================================
+SCENARIO WP3 3.1.2 - Tony il Doppio Votante
+======================================================================
+[OK] Secondo voto rifiutato da AA: Studente IE22701000 ha gia' ottenuto un certificato di voto.
+[OK] Richieste concorrenti per lo stesso studente: accettate 1/2 (atteso 1/2).
+
+======================================================================
+SCENARIO NUOVO (WP2 §2.1.1/§2.1.4) - Certificato scaduto (NotAfter)
+======================================================================
+[OK] Scheda rifiutata per scadenza del certificato: Certificato scaduto: NotAfter=1788616281, ricevuto a T=1788616281.
+
+======================================================================
+SCENARIO WP3 3.1.1/3.1.5 - impostore senza Cert valido da AA
+======================================================================
+[OK] Scheda rifiutata dal GU: Certificato di voto non valido o non emesso dall'Autorita' di Autenticazione.
+
+======================================================================
+VERIFICABILITA' INDIVIDUALE (VI.1) - Proof of Membership
+======================================================================
+Firma del GU sulla ricevuta di IE22701003 valida? True
+[OK] Proof of Membership per IE22701003: indice=3, lunghezza percorso=6, valida=True
+
+======================================================================
+SCENARIO WP3 3.1.4 - Sam il Gestore Malizioso dell'Urna
+======================================================================
+[OK] Auto-consistenza PRIMA della manomissione: True
+[OK] Coerenza con l'ultima bacheca pubblicata PRIMA: True
+[OK] Auto-consistenza DOPO: False (atteso False)
+[OK] Coerenza con la bacheca pubblicata DOPO: False (atteso False)
+
+======================================================================
+SETUP INFRASTRUTTURA
+======================================================================
+[OK] Root CA d'Ateneo attiva (offline dopo l'emissione dell'intermedia). CA Intermedia creata; certificati X.509v3 di AA e GU emessi da questa e verificati sull'intera catena Root->Intermedia->end-entity.
+[OK] Commissione Elettorale: pkCE/skCE generata, skCE protetta con soglia (3,5).
+[OK] Autorita' di Autenticazione: 40 studenti eleggibili, gettoni Cert validi 300s (NotAfter).
+[OK] Gestore dell'Urna pronto. Bacheca pubblicata ogni 5 schede (e definitivamente alla chiusura). Chiusura richiede 3 conferme CE.
+
+======================================================================
+SESSIONE DI VOTO (elettori onesti)
+======================================================================
+[OK] 40 voti sottomessi con successo. Urna: 40 schede registrate.
+[OK] Auto-consistenza dell'urna (h vs SHA-256(c) corrente): True
+[OK] Ultima bacheca pubblicata: n=40, root=e61ba51a8ac530ff...
+
+======================================================================
+VERIFICABILITA' INDIVIDUALE (VI.1) - Proof of Membership
+======================================================================
+Firma del GU sulla ricevuta di IE22701013 valida? True
+[OK] Proof of Membership per IE22701013: indice=13, lunghezza percorso=6, valida=True
+
+======================================================================
+DECRETO DI CHIUSURA A SOGLIA, RIMESCOLAMENTO E SCRUTINIO (WP2 §2.1.5)
+======================================================================
+[OK] Conferma di chiusura da Commissario_1 (1/3).
+[OK] Conferma di chiusura da Commissario_2 (2/3).
+[OK] Conferma di chiusura da Commissario_3 (3/3).
+[OK] Soglia raggiunta: urna chiusa e bacheca pubblicata definitivamente (Merkle Root firmata su 40 schede).
+
+[OK] Fase di Rimescolamento: estratti 40 crittogrammi (nessun metadato), ordinati lessicograficamente. Primi 2 (troncati): ['07ecb85368e76e8c...', '0f3911fdb89f7bfe...']
+
+[OK] 3/5 commissari cooperano (soglia t=3) per ricostruire skCE in RAM isolata.
+[OK] skCE distrutta dalla memoria subito dopo la decifratura (secure memory zeroing, best-effort).
+[OK] Scrutinio completato in 0.049s su 40 schede (0 anomalie/non decifrabili: []).
+[OK] Pubblicati SOLO i totali aggregati per lista (nessun voto individuale v esposto):
+     Scheda Bianca: 8 voti
+     Lista A: 12 voti
+     Lista B: 13 voti
+     Lista C: 7 voti
+[OK] Conteggio ricalcolato indipendentemente coerente con il risultato (a meno delle schede segnalate come anomale): True
+
+Verificabilita' Universale (VU.1): ricalcolo indipendente della Merkle Root sull'ultima bacheca pubblicata...
+[OK] Root ricalcolata dai crittogrammi correnti coincide con quella firmata e pubblicata: True
+
+Tempo medio end-to-end per voto (client+AA+GU), 80 voti: 226.256 ms
+
+======================================================================
+BENCHMARK PRESTAZIONI CRITTOGRAFICHE (20 iterazioni)
+======================================================================
+  Generazione coppia RSA-2048               : media   37.557 ms  (min 11.263 / max 91.507)
+  Cifratura RSA-OAEP (scheda)               : media    0.030 ms  (min 0.023 / max 0.096)
+  Decifratura RSA-OAEP                      : media    0.354 ms  (min 0.307 / max 0.633)
+  Firma RSA-PSS (Cert / stemp / ricevuta)   : media    0.339 ms  (min 0.306 / max 0.614)
+  Verifica RSA-PSS                          : media    0.029 ms  (min 0.026 / max 0.042)
+  Emissione certificato X.509v3 (Intermedia): media   49.033 ms  (min 12.658 / max 110.938)
+  Ricostruzione skCE (Shamir t=3,n=5)       : media   36.915 ms  (min 35.464 / max 40.497)
+  Merkle Root su 500 foglie                 : media    0.600 ms  (min 0.571 / max 0.645)
+  Merkle Proof su 500 foglie                : media    0.615 ms  (min 0.578 / max 0.760)
+
+  Dimensione media di Mvoto = <c, stemp, Cert, pktemp>: 1227 byte (c=256, stemp=256, Cert=264 [8B NotAfter + firma], pktemp_PEM=451)
+

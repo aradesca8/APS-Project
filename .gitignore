@@ -1,0 +1,41 @@
+cat > /tmp/gitignore_suggerito.txt << 'EOF'
+# Ambiente virtuale
+venv/
+env/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Cache di pytest
+.pytest_cache/
+.benchmarks/
+
+# File generati dai benchmark (dati, non codice sorgente)
+benchmark_results.json
+
+# File di sistema
+.DS_Store
+EOF
+cat /tmp/gitignore_suggerito.txt
+Output
+
+# Ambiente virtuale
+venv/
+env/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Cache di pytest
+.pytest_cache/
+.benchmarks/
+
+# File generati dai benchmark (dati, non codice sorgente)
+benchmark_results.json
+
+# File di sistema
+.DS_Store
